@@ -372,7 +372,7 @@ public bool IsRespawning { get; set; } = false;
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
             if (_verticalVelocity < _terminalVelocity)
             {
-                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAh");
+                // Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAh");
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
         }
