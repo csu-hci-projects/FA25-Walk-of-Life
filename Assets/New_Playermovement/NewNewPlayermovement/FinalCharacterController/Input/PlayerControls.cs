@@ -120,6 +120,15 @@ namespace WalkOfLife.FinalCharacterController
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jumping"",
+                    ""type"": ""Button"",
+                    ""id"": ""21e000f5-ec71-4ad4-a1d2-5b942c302f2a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,6 +263,17 @@ namespace WalkOfLife.FinalCharacterController
                     ""action"": ""ToggleSprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""680a795a-f3e1-49c3-b345-9cfefb54629e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jumping"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -265,6 +285,7 @@ namespace WalkOfLife.FinalCharacterController
             m_PlayerLocomotionMap_Movement = m_PlayerLocomotionMap.FindAction("Movement", throwIfNotFound: true);
             m_PlayerLocomotionMap_look = m_PlayerLocomotionMap.FindAction("look", throwIfNotFound: true);
             m_PlayerLocomotionMap_ToggleSprint = m_PlayerLocomotionMap.FindAction("ToggleSprint", throwIfNotFound: true);
+            m_PlayerLocomotionMap_Jumping = m_PlayerLocomotionMap.FindAction("Jumping", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -348,6 +369,7 @@ namespace WalkOfLife.FinalCharacterController
         private readonly InputAction m_PlayerLocomotionMap_Movement;
         private readonly InputAction m_PlayerLocomotionMap_look;
         private readonly InputAction m_PlayerLocomotionMap_ToggleSprint;
+        private readonly InputAction m_PlayerLocomotionMap_Jumping;
         /// <summary>
         /// Provides access to input actions defined in input action map "PlayerLocomotionMap".
         /// </summary>
@@ -371,6 +393,10 @@ namespace WalkOfLife.FinalCharacterController
             /// Provides access to the underlying input action "PlayerLocomotionMap/ToggleSprint".
             /// </summary>
             public InputAction @ToggleSprint => m_Wrapper.m_PlayerLocomotionMap_ToggleSprint;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerLocomotionMap/Jumping".
+            /// </summary>
+            public InputAction @Jumping => m_Wrapper.m_PlayerLocomotionMap_Jumping;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -406,6 +432,9 @@ namespace WalkOfLife.FinalCharacterController
                 @ToggleSprint.started += instance.OnToggleSprint;
                 @ToggleSprint.performed += instance.OnToggleSprint;
                 @ToggleSprint.canceled += instance.OnToggleSprint;
+                @Jumping.started += instance.OnJumping;
+                @Jumping.performed += instance.OnJumping;
+                @Jumping.canceled += instance.OnJumping;
             }
 
             /// <summary>
@@ -426,6 +455,9 @@ namespace WalkOfLife.FinalCharacterController
                 @ToggleSprint.started -= instance.OnToggleSprint;
                 @ToggleSprint.performed -= instance.OnToggleSprint;
                 @ToggleSprint.canceled -= instance.OnToggleSprint;
+                @Jumping.started -= instance.OnJumping;
+                @Jumping.performed -= instance.OnJumping;
+                @Jumping.canceled -= instance.OnJumping;
             }
 
             /// <summary>
@@ -487,6 +519,13 @@ namespace WalkOfLife.FinalCharacterController
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnToggleSprint(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Jumping" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnJumping(InputAction.CallbackContext context);
         }
     }
 }

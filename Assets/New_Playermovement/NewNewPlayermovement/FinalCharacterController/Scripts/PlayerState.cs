@@ -11,8 +11,17 @@ namespace WalkOfLife.FinalCharacterController
         {
             CurrentPlayerMovementState = playerMovementState;
         }
+        public bool IsGroundedState()
+        {
+            return CurrentPlayerMovementState == PlayerMovementState.Idling ||
+                    CurrentPlayerMovementState == PlayerMovementState.Running ||
+                    CurrentPlayerMovementState == PlayerMovementState.Walking ||
+                    CurrentPlayerMovementState == PlayerMovementState.Sprinting ||
+                    CurrentPlayerMovementState == PlayerMovementState.Strafing;
+        }
     }
-    
+
+
         public enum PlayerMovementState
         {
             Idling = 0,
