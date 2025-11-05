@@ -10,6 +10,7 @@ namespace WalkOfLife.FinalCharacterController
         [SerializeField] private bool holdToSprint = true;
 
         public bool SprintToggledOn { get; private set; }
+        public bool WalkToggledOn { get; private set; }
         public bool jumpPressed { get; private set; }
 
         public PlayerControls PlayerControls { get; private set; }
@@ -68,6 +69,15 @@ namespace WalkOfLife.FinalCharacterController
         {
             if (!context.performed) { return; }
             jumpPressed = true;
+        }
+
+        public void OnToggleWalk(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                return;
+            }
+            WalkToggledOn = !WalkToggledOn;
         }
         #endregion
     }
