@@ -11,14 +11,18 @@ namespace WalkOfLife.FinalCharacterController
         [SerializeField] private float locoMotionBlendSpeed = 0.02f;
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerState _playerState;
+        private PlayerController _playerController;
 
         // NOTE: !!! The Strings in ("") are Case sensitive to whatever you named the animation in the animator in Unity!!!
         private static int inputXHash = Animator.StringToHash("InputX");
         private static int inputYHash = Animator.StringToHash("InputY");
         private static int inputMagnitudeHash = Animator.StringToHash("InputMagnitude");
+        private static int isIdlingHash = Animator.StringToHash("isIdling");
         private static int isGroundedHash = Animator.StringToHash("IsGrounded");
         private static int isFallingHash = Animator.StringToHash("IsFalling");
         private static int isJumpingHash = Animator.StringToHash("IsJumping");
+        private static int IsRotatingToTargetHash = Animator.StringToHash("isRotatingToTarget");
+        private static int rotationMissmatchHash = Animator.StringToHash("rotationMissMatch");
         
         // used to smooth the blending process between animations
         private Vector3 _currentBlendInput = Vector3.zero;
@@ -26,6 +30,7 @@ namespace WalkOfLife.FinalCharacterController
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
+            _playerController = GetComponent<PlayerController>();
         }
         private void Update()
         {
@@ -46,12 +51,17 @@ namespace WalkOfLife.FinalCharacterController
             Vector2 inputTarget = isSprinting ? _playerLocomotionInput.MovementInput * 1.5f : _playerLocomotionInput.MovementInput;
 
             _currentBlendInput = Vector3.Lerp(_currentBlendInput, inputTarget, locoMotionBlendSpeed);
+
             _animator.SetBool(isGroundedHash, isGrounded);
+            _animator.SetBool(isIdlingHash, isIdling);
             _animator.SetBool(isFallingHash, isFalling);
             _animator.SetBool(isJumpingHash, isJumping);
+            _animator.SetBool(IsRotatingToTargetHash, _playerController.IsRotatingToTarget);
+
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);
             _animator.SetFloat(inputMagnitudeHash, _currentBlendInput.magnitude);
+            _animator.SetFloat(rotationMissmatchHash, _playerController.RotationMissmatch);
 
         }
 

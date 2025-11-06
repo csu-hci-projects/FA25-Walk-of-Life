@@ -13,11 +13,15 @@ namespace WalkOfLife.FinalCharacterController
         }
         public bool IsGroundedState()
         {
+            return IsStateGroundedState(CurrentPlayerMovementState);
+        }
+        public bool IsStateGroundedState(PlayerMovementState movementState)
+        {
             return CurrentPlayerMovementState == PlayerMovementState.Idling ||
-                    CurrentPlayerMovementState == PlayerMovementState.Running ||
-                    CurrentPlayerMovementState == PlayerMovementState.Walking ||
-                    CurrentPlayerMovementState == PlayerMovementState.Sprinting ||
-                    CurrentPlayerMovementState == PlayerMovementState.Strafing;
+                CurrentPlayerMovementState == PlayerMovementState.Running ||
+                CurrentPlayerMovementState == PlayerMovementState.Walking ||
+                CurrentPlayerMovementState == PlayerMovementState.Sprinting ||
+                CurrentPlayerMovementState == PlayerMovementState.Strafing;
         }
     }
 
