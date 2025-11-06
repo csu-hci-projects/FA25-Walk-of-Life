@@ -133,7 +133,7 @@ namespace WalkOfLife.FinalCharacterController
             if (_playerState.IsStateGroundedState(_lastMovementState) && !isGrounded)
             {
                 _verticalVelocity += _antiBump;
-                print("antibump removed");
+                print("antibump added");
 
             }
         }
