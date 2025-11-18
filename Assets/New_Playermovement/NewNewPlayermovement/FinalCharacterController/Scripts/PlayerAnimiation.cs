@@ -21,8 +21,8 @@ namespace WalkOfLife.FinalCharacterController
         private static int isGroundedHash = Animator.StringToHash("IsGrounded");
         private static int isFallingHash = Animator.StringToHash("IsFalling");
         private static int isJumpingHash = Animator.StringToHash("IsJumping");
-        private static int IsRotatingToTargetHash = Animator.StringToHash("isRotatingToTarget");
-        private static int rotationMissmatchHash = Animator.StringToHash("rotationMissMatch");
+        private static int IsRotatingToTargetHash = Animator.StringToHash("IsRotatingToTarget");
+        private static int rotationMissmatchHash = Animator.StringToHash("RotationMissmatch");
         
         // used to smooth the blending process between animations
         private Vector3 _currentBlendInput = Vector3.zero;
