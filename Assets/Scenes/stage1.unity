@@ -1655,8 +1655,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractionPromptUI
   mainCam: {fileID: 29788499}
   uiPanel: {fileID: 14982933}
-  _promptText: {fileID: 0}
-  IsDisplayed: 0
+  _promptText: {fileID: 1878877936}
+  IsDisplayed: 1
 --- !u!114 &82450104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,7 +1707,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 29788499}
+  m_Camera: {fileID: 1828666863}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3759,6 +3759,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   prompt: Open Door
+--- !u!65 &231674491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231674486}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.8865156, y: 0.90888524, z: 10.540384}
+  m_Center: {x: -2.943224, y: -0.40540752, z: 5.270192}
 --- !u!1001 &236000977
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13147,7 +13168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.976
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13192,6 +13213,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 231674490}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 231674491}
   m_SourcePrefab: {fileID: 100100000, guid: c3a2e9c7a879b7d41b29957e6f9ed6c0, type: 3}
 --- !u!1 &1007552255
 GameObject:
@@ -25234,6 +25258,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5dbb1271adc00b488dd4dbc71b5a667, type: 3}
+--- !u!20 &1828666863 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2737738365332042142, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
+  m_PrefabInstance: {fileID: 9110521386852283006}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1829132923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30004,7 +30033,7 @@ MonoBehaviour:
   interactableMask:
     serializedVersion: 2
     m_Bits: 128
-  interactionPromptUI: {fileID: 0}
+  interactionPromptUI: {fileID: 82450103}
   numFound: 0
 --- !u!1001 &6540022830803012827
 PrefabInstance:
@@ -30641,6 +30670,14 @@ PrefabInstance:
     - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: jumpSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
+      propertyPath: lookSensH
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
+      propertyPath: lookSensV
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: runAcceleration
