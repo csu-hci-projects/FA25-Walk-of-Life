@@ -129,7 +129,7 @@ namespace WalkOfLife.FinalCharacterController
                 _jumpedLastFrame = true;
             }
 
-            print(_lastMovementState);
+            //print(_lastMovementState);
             if (_playerState.IsStateGroundedState(_lastMovementState) && !isGrounded)
             {
                 _verticalVelocity += _antiBump;
