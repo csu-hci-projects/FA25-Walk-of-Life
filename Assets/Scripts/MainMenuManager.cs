@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class MainMenuManager : MonoBehaviour
     }
     public void QuitGame()
     {
+        Scene activeScene = SceneManager.GetActiveScene();
+        Debug.Log("MainMenuManager: the active scene is" + activeScene.name);
+        if (activeScene.name == "DeathScreen")
+        {
+            EditorApplication.isPlaying = false;
+        }
         Application.Quit();
     }
 }
