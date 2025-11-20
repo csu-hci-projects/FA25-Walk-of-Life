@@ -30877,11 +30877,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: lookSensH
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: lookSensV
-      value: 0.25
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6699925953684825744, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: runAcceleration
@@ -30933,7 +30933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.778
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalPosition.z
