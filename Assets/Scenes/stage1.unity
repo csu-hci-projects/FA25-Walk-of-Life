@@ -30672,6 +30672,18 @@ MonoBehaviour:
     m_Bits: 128
   interactionPromptUI: {fileID: 82450103}
   numFound: 0
+--- !u!114 &6228263038033225973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4443750443509833495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d08eb83519f094085ab93039e493fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WalkOfLife.FinalCharacterController.PlayerActionInput
 --- !u!1001 &6540022830803012827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31555,6 +31567,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5749657316944025619, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6228263038033225972}
+    - targetCorrespondingSourceObject: {fileID: 5749657316944025619, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6228263038033225973}
   m_SourcePrefab: {fileID: 100100000, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using System.Security.Policy;
 using UnityEngine;
 
 namespace WalkOfLife.FinalCharacterController
@@ -12,6 +15,7 @@ namespace WalkOfLife.FinalCharacterController
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerState _playerState;
         private PlayerController _playerController;
+        private PlayerActionInput _playerActionsInput;
 
         // NOTE: !!! The Strings in ("") are Case sensitive to whatever you named the animation in the animator in Unity!!!
         private static int inputXHash = Animator.StringToHash("InputX");
@@ -23,6 +27,10 @@ namespace WalkOfLife.FinalCharacterController
         private static int isJumpingHash = Animator.StringToHash("IsJumping");
         private static int IsRotatingToTargetHash = Animator.StringToHash("IsRotatingToTarget");
         private static int rotationMissmatchHash = Animator.StringToHash("RotationMissmatch");
+        //action
+        private static int isAttackingHash = Animator.StringToHash("IsAttacking");
+        private static int isPlayingAttackingHash = Animator.StringToHash("isPlayingAction");
+        private int[] actionHashes;
         
         // used to smooth the blending process between animations
         private Vector3 _currentBlendInput = Vector3.zero;
@@ -31,6 +39,8 @@ namespace WalkOfLife.FinalCharacterController
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
             _playerController = GetComponent<PlayerController>();
+            _playerActionsInput = GetComponent<PlayerActionInput>();
+
         }
         private void Update()
         {
@@ -57,6 +67,7 @@ namespace WalkOfLife.FinalCharacterController
             _animator.SetBool(isFallingHash, isFalling);
             _animator.SetBool(isJumpingHash, isJumping);
             _animator.SetBool(IsRotatingToTargetHash, _playerController.IsRotatingToTarget);
+            _animator.SetBool(isAttackingHash, _playerActionsInput.AttackPressed);
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);
