@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 namespace WalkOfLife.FinalCharacterController
@@ -26,6 +27,11 @@ namespace WalkOfLife.FinalCharacterController
         
         // used to smooth the blending process between animations
         private Vector3 _currentBlendInput = Vector3.zero;
+
+        // blend tree values
+        private float _sprintMaxBlendValue = 1.5f;
+        private float _runMaxBlendValue = 1.0f;
+        private float _walkMaxValue = 0.5f;
         private void Awake()
         {
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
@@ -47,8 +53,9 @@ namespace WalkOfLife.FinalCharacterController
        
 
             bool isSprinting = _playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting;
-
-            Vector2 inputTarget = isSprinting ? _playerLocomotionInput.MovementInput * 1.5f : _playerLocomotionInput.MovementInput;
+            bool isRunBlendValue = isRunning || isSprinting || isFalling;
+            Vector2 inputTarget = isSprinting ? _playerLocomotionInput.MovementInput * _sprintMaxBlendValue :
+                                  isRunBlendValue ? _playerLocomotionInput.MovementInput * _runMaxBlendValue :_playerLocomotionInput.MovementInput * _walkMaxValue;
 
             _currentBlendInput = Vector3.Lerp(_currentBlendInput, inputTarget, locoMotionBlendSpeed);
 

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 namespace WalkOfLife.FinalCharacterController
@@ -13,7 +14,7 @@ namespace WalkOfLife.FinalCharacterController
         public bool WalkToggledOn { get; private set; }
         public bool jumpPressed { get; private set; }
 
-        public PlayerControls PlayerControls { get; private set; }
+      
         public Vector2 MovementInput { get; private set; }
 
         public Vector2 LookInput { get; private set; }
@@ -21,16 +22,25 @@ namespace WalkOfLife.FinalCharacterController
         #region StartUp
         private void OnEnable()
         {
-            PlayerControls = new PlayerControls();
-            PlayerControls.Enable();
 
-            PlayerControls.PlayerLocomotionMap.Enable();
-            PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
+           //PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.Enable();
+            if (PlayerInputManager.Instance?.PlayerControls == null)
+            {
+                Debug.LogError("PlayerLocomotionInput: Player Controller is not Initialized - cannon enable");
+                return;
+            }
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.Enable();
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.SetCallbacks(this);
         }
         private void OnDisable()
         {
-            PlayerControls.PlayerLocomotionMap.Disable();
-            PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
+            if (PlayerInputManager.Instance?.PlayerControls == null)
+            {
+                Debug.LogError("PlayerLocomotionInput: Player Controller is not Initialized - cannon Disable");
+                return;
+            }
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.Disable();
+            PlayerInputManager.Instance.PlayerControls.PlayerLocomotionMap.RemoveCallbacks(this);
         }
         #endregion
         #region LateStart

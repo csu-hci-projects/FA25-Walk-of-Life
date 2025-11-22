@@ -37,6 +37,7 @@ namespace WalkOfLife.FinalCharacterController
         public float drag = 20f;
         public float movingThreasHold = 0.01f;
         public float gravity = 25f;
+        public float terminalVelocity = 20f;
         public float jumpSpeed = 1.0f;
 
 
@@ -135,6 +136,11 @@ namespace WalkOfLife.FinalCharacterController
                 _verticalVelocity += _antiBump;
                 print("antibump added");
 
+            }
+             // if the players absolute velocity is greater than vertical velocity then the players velocity is set to terminal
+            if (Mathf.Abs(_verticalVelocity) > Mathf.Abs(terminalVelocity))       
+            {
+                _verticalVelocity = -1f * Mathf.Abs(terminalVelocity);
             }
         }
 
