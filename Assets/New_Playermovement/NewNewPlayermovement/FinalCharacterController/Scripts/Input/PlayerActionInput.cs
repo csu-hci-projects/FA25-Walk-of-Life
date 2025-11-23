@@ -11,7 +11,8 @@ namespace WalkOfLife.FinalCharacterController
     {
         #region Class variables
 
-        [field: SerializeField] public bool AttackPressed { get; private set;} //= false;
+        [field: SerializeField] public bool AttackPressedLeft { get; private set;} //= false;
+        [field: SerializeField] public bool AttackPressedRight { get; private set;}
 
         #endregion
         #region StartUp
@@ -43,26 +44,58 @@ namespace WalkOfLife.FinalCharacterController
         #endregion
         #region Update
         
-        public void SetAttackPressedFalse()
+        public void SetAttackLeftPressedFalse()
         {
-            AttackPressed = false;
+            AttackPressedLeft = false;
+            
         }
-
+        public void SetAttackRightPressedFalse()
+        {
+            AttackPressedRight = false;
+        }
+       
        
         #endregion
 
         #region Input Callbacks
-        public void OnAttack(InputAction.CallbackContext context)
+        
+
+        public void OnAttackLeft(InputAction.CallbackContext context)
         {
             if (!context.performed)
             {
                 //SetAttackPressedFalse();
-                Debug.Log("PlayerActionInput:59: action was not executed");
+                //Debug.Log("PlayerActionInput:59: action was not executed");
                 return;
             }
-            AttackPressed = true;
+            if (!(AttackPressedLeft && AttackPressedRight)){
+            AttackPressedLeft = true;
+            }
+            else
+            {
+                AttackPressedLeft = false;
+                AttackPressedRight = false;
+            }
         }
-       
+
+        public void OnAttackRight(InputAction.CallbackContext context)
+        {
+            if (!context.performed)
+            {
+                //SetAttackPressedFalse();
+                //Debug.Log("PlayerActionInput:75: action was not executed");
+                return;
+            }
+             if (!(AttackPressedLeft && AttackPressedRight)){
+            AttackPressedRight = true;
+            }
+            else
+            {
+                AttackPressedRight = false;
+                AttackPressedLeft = false;
+            }
+        }
+
 
         #endregion
     }

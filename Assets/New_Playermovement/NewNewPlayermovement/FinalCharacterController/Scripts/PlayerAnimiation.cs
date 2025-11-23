@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace WalkOfLife.FinalCharacterController
@@ -29,8 +30,8 @@ namespace WalkOfLife.FinalCharacterController
         private static int rotationMissmatchHash = Animator.StringToHash("RotationMissmatch");
 
         // player interaction hashes
-        //private static int isAttackingTH = Animator.StringToHash("IsAttackingTH");
-        private static int isAttackingHandsHash = Animator.StringToHash("IsAttackingHands");
+        private static int isAttackingRight = Animator.StringToHash("IsAttackingRight");
+        private static int isAttackingLeft = Animator.StringToHash("IsAttackingLeft");
         private static int isPlayingActionHash = Animator.StringToHash("IsPlayingAction");
         private int[] actionHashList;
         
@@ -48,7 +49,7 @@ namespace WalkOfLife.FinalCharacterController
             _playerController = GetComponent<PlayerController>();
             _playerActionInput = GetComponent<PlayerActionInput>();
             //Debug.Log(" IN Awake _playerActionInput is:  "+_playerActionInput);
-            actionHashList = new int []{isAttackingHandsHash};
+            actionHashList = new int []{isAttackingLeft,isAttackingRight};
         }
         private void Update()
         {
@@ -62,6 +63,7 @@ namespace WalkOfLife.FinalCharacterController
             bool isFalling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
             bool isGrounded = _playerState.IsGroundedState();
             bool isPlayingAction = actionHashList.Any(hash => _animator.GetBool(hash));
+            
 
        
 
@@ -77,11 +79,14 @@ namespace WalkOfLife.FinalCharacterController
             _animator.SetBool(isFallingHash, isFalling);
             _animator.SetBool(isJumpingHash, isJumping);
             _animator.SetBool(IsRotatingToTargetHash, _playerController.IsRotatingToTarget);
-            Debug.Log("PlayerAnimation:80 current player action is:  "+_playerActionInput.AttackPressed);
-        
-           // _animator.SetBool(isAttackingTH,_playerActionInput.AttackPressed);
-            _animator.SetBool(isAttackingHandsHash,_playerActionInput.AttackPressed);
+           // Debug.Log("PlayerAnimation:81 current player action is:  "+_playerActionInput.AttackPressedRight);
+           // Debug.Log("PlayerAnimation:82 current player action is:  "+_playerActionInput.AttackPressedLeft);
+
+            //attack animiation
+            _animator.SetBool(isAttackingRight,_playerActionInput.AttackPressedRight);
+            _animator.SetBool(isAttackingLeft,_playerActionInput.AttackPressedLeft);
             _animator.SetBool(isPlayingActionHash, isPlayingAction);
+          
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);

@@ -330,9 +330,18 @@ namespace WalkOfLife.FinalCharacterController
             ""id"": ""81124a89-0ebe-4256-8343-0ce2f313fca5"",
             ""actions"": [
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""AttackLeft"",
                     ""type"": ""Button"",
                     ""id"": ""ddb9db6d-a6c7-49d6-b7a8-b14c86bd64ba"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""527fb8b3-b5da-499d-ad23-7d1746b94a4e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -347,7 +356,18 @@ namespace WalkOfLife.FinalCharacterController
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""AttackLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdf6991c-d491-49d6-98fd-0cacb1cd8b78"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -368,7 +388,8 @@ namespace WalkOfLife.FinalCharacterController
             m_ThirdPersonMap_ScrollCamera = m_ThirdPersonMap.FindAction("ScrollCamera", throwIfNotFound: true);
             // PlayerActionMap
             m_PlayerActionMap = asset.FindActionMap("PlayerActionMap", throwIfNotFound: true);
-            m_PlayerActionMap_Attack = m_PlayerActionMap.FindAction("Attack", throwIfNotFound: true);
+            m_PlayerActionMap_AttackLeft = m_PlayerActionMap.FindAction("AttackLeft", throwIfNotFound: true);
+            m_PlayerActionMap_AttackRight = m_PlayerActionMap.FindAction("AttackRight", throwIfNotFound: true);
         }
 
         ~@PlayerControls()
@@ -687,7 +708,8 @@ namespace WalkOfLife.FinalCharacterController
         // PlayerActionMap
         private readonly InputActionMap m_PlayerActionMap;
         private List<IPlayerActionMapActions> m_PlayerActionMapActionsCallbackInterfaces = new List<IPlayerActionMapActions>();
-        private readonly InputAction m_PlayerActionMap_Attack;
+        private readonly InputAction m_PlayerActionMap_AttackLeft;
+        private readonly InputAction m_PlayerActionMap_AttackRight;
         /// <summary>
         /// Provides access to input actions defined in input action map "PlayerActionMap".
         /// </summary>
@@ -700,9 +722,13 @@ namespace WalkOfLife.FinalCharacterController
             /// </summary>
             public PlayerActionMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "PlayerActionMap/Attack".
+            /// Provides access to the underlying input action "PlayerActionMap/AttackLeft".
             /// </summary>
-            public InputAction @Attack => m_Wrapper.m_PlayerActionMap_Attack;
+            public InputAction @AttackLeft => m_Wrapper.m_PlayerActionMap_AttackLeft;
+            /// <summary>
+            /// Provides access to the underlying input action "PlayerActionMap/AttackRight".
+            /// </summary>
+            public InputAction @AttackRight => m_Wrapper.m_PlayerActionMap_AttackRight;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -729,9 +755,12 @@ namespace WalkOfLife.FinalCharacterController
             {
                 if (instance == null || m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_PlayerActionMapActionsCallbackInterfaces.Add(instance);
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
+                @AttackLeft.started += instance.OnAttackLeft;
+                @AttackLeft.performed += instance.OnAttackLeft;
+                @AttackLeft.canceled += instance.OnAttackLeft;
+                @AttackRight.started += instance.OnAttackRight;
+                @AttackRight.performed += instance.OnAttackRight;
+                @AttackRight.canceled += instance.OnAttackRight;
             }
 
             /// <summary>
@@ -743,9 +772,12 @@ namespace WalkOfLife.FinalCharacterController
             /// <seealso cref="PlayerActionMapActions" />
             private void UnregisterCallbacks(IPlayerActionMapActions instance)
             {
-                @Attack.started -= instance.OnAttack;
-                @Attack.performed -= instance.OnAttack;
-                @Attack.canceled -= instance.OnAttack;
+                @AttackLeft.started -= instance.OnAttackLeft;
+                @AttackLeft.performed -= instance.OnAttackLeft;
+                @AttackLeft.canceled -= instance.OnAttackLeft;
+                @AttackRight.started -= instance.OnAttackRight;
+                @AttackRight.performed -= instance.OnAttackRight;
+                @AttackRight.canceled -= instance.OnAttackRight;
             }
 
             /// <summary>
@@ -845,12 +877,19 @@ namespace WalkOfLife.FinalCharacterController
         public interface IPlayerActionMapActions
         {
             /// <summary>
-            /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "AttackLeft" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnAttack(InputAction.CallbackContext context);
+            void OnAttackLeft(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "AttackRight" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnAttackRight(InputAction.CallbackContext context);
         }
     }
 }
