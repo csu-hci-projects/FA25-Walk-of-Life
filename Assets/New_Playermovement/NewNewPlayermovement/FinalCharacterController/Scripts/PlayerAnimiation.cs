@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -13,6 +15,7 @@ namespace WalkOfLife.FinalCharacterController
         private PlayerLocomotionInput _playerLocomotionInput;
         private PlayerState _playerState;
         private PlayerController _playerController;
+        private PlayerActionInput _playerActionInput;
 
         // NOTE: !!! The Strings in ("") are Case sensitive to whatever you named the animation in the animator in Unity!!!
         private static int inputXHash = Animator.StringToHash("InputX");
@@ -24,6 +27,12 @@ namespace WalkOfLife.FinalCharacterController
         private static int isJumpingHash = Animator.StringToHash("IsJumping");
         private static int IsRotatingToTargetHash = Animator.StringToHash("IsRotatingToTarget");
         private static int rotationMissmatchHash = Animator.StringToHash("RotationMissmatch");
+
+        // player interaction hashes
+        //private static int isAttackingTH = Animator.StringToHash("IsAttackingTH");
+        private static int isAttackingHandsHash = Animator.StringToHash("IsAttackingHands");
+        private static int isPlayingActionHash = Animator.StringToHash("IsPlayingAction");
+        private int[] actionHashList;
         
         // used to smooth the blending process between animations
         private Vector3 _currentBlendInput = Vector3.zero;
@@ -37,6 +46,9 @@ namespace WalkOfLife.FinalCharacterController
             _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
             _playerState = GetComponent<PlayerState>();
             _playerController = GetComponent<PlayerController>();
+            _playerActionInput = GetComponent<PlayerActionInput>();
+            //Debug.Log(" IN Awake _playerActionInput is:  "+_playerActionInput);
+            actionHashList = new int []{isAttackingHandsHash};
         }
         private void Update()
         {
@@ -49,6 +61,7 @@ namespace WalkOfLife.FinalCharacterController
             bool isJumping = _playerState.CurrentPlayerMovementState == PlayerMovementState.Jumping;
             bool isFalling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
             bool isGrounded = _playerState.IsGroundedState();
+            bool isPlayingAction = actionHashList.Any(hash => _animator.GetBool(hash));
 
        
 
@@ -64,6 +77,11 @@ namespace WalkOfLife.FinalCharacterController
             _animator.SetBool(isFallingHash, isFalling);
             _animator.SetBool(isJumpingHash, isJumping);
             _animator.SetBool(IsRotatingToTargetHash, _playerController.IsRotatingToTarget);
+            Debug.Log("PlayerAnimation:80 current player action is:  "+_playerActionInput.AttackPressed);
+        
+           // _animator.SetBool(isAttackingTH,_playerActionInput.AttackPressed);
+            _animator.SetBool(isAttackingHandsHash,_playerActionInput.AttackPressed);
+            _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
             _animator.SetFloat(inputXHash, _currentBlendInput.x);
             _animator.SetFloat(inputYHash, _currentBlendInput.y);
