@@ -14,12 +14,10 @@ public class HitboxManager : MonoBehaviour
     public void EnableHitbox()
     {
         hitbox.enabled = true;
-        Debug.Log("Hitbox ON");
     }
 
     public void DisableHitbox()
     {
         hitbox.enabled = false;
-        Debug.Log("Hitbox OFF");
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class AttributesManager : MonoBehaviour
 {
+    [SerializeField] public int maxHealth = 100;
     [SerializeField] public int health;
     [SerializeField] public int attack;
 
@@ -15,7 +16,6 @@ public class AttributesManager : MonoBehaviour
         {
             if( this.gameObject.tag == "Player")
             {
-            Debug.Log("Player Died");  
             SceneManager.LoadScene("DeathScreen");
             }
             else
@@ -30,12 +30,18 @@ public class AttributesManager : MonoBehaviour
         if(atm != null)
         {
             atm.TakeDamage(attack);
-
+            if (this.CompareTag("Player"))
+        {
+            var punchSound = GetComponent<PunchSoundManager>();
+            if (punchSound != null)
+            {
+                punchSound.PlayPunchSound();
+            }
+        }
         }
     }
     private void Die()
     {
-        Debug.Log($"{gameObject.name} is dead.");
         Destroy(gameObject);
     }
 }
