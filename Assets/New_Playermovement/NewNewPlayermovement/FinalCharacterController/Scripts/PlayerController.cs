@@ -3,6 +3,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement; 
 
 namespace WalkOfLife.FinalCharacterController
 {
@@ -284,7 +285,17 @@ namespace WalkOfLife.FinalCharacterController
             //This means player is moving diagonally at 45 degrees or forward, if so we can run
             return _playerLocomotionInput.MovementInput.y >= Mathf.Abs(_playerLocomotionInput.MovementInput.x);
         }
-
+        public void FreezeMovement()
+        {
+            _playerLocomotionInput.enabled = false;
+            _verticalVelocity = 0f;
+        }
+        public void KillPlayer()
+        {
+            FreezeMovement();
+            _characterController.enabled = false;
+            Debug.Log("Player dead");
+            SceneManager.LoadScene("DeathScreen");
+        }
     }
-    
 }
