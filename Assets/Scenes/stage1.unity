@@ -2386,6 +2386,11 @@ MonoBehaviour:
   footTimer: 0
   attackCooldown: 3
   attackTimer: 0
+  mainCamera: {fileID: 1828666863}
+  cameraZoomDuration: 0.5
+  cameraZoomFOV: 30
+  jumpscareSound: {fileID: 8300000, guid: 45e17247aec225c4caa213946cf5e00b, type: 3}
+  jumpscareVolume: 0.25
   seesPlayer: 0
 --- !u!4 &100352222 stripped
 Transform:
@@ -11668,6 +11673,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1364289435}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 44a2c2ed752ea7749a90c0494722d7a6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 44a2c2ed752ea7749a90c0494722d7a6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 44a2c2ed752ea7749a90c0494722d7a6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 44a2c2ed752ea7749a90c0494722d7a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.65617
@@ -34963,7 +34980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.16
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalPosition.y
@@ -34971,7 +34988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.84
+      value: 9.1
       objectReference: {fileID: 0}
     - target: {fileID: 7120786991410998828, guid: 91fd095a140865246a2a99b6bc6d73db, type: 3}
       propertyPath: m_LocalRotation.w
