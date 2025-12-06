@@ -26,7 +26,7 @@ public class EndCaseInteraction : MonoBehaviour, IInteractable
 
         //Still need to make victory scene
         //SceneManager.LoadScene(victorySceneName);
-        Debug.Log("Bus started! Loading victory screen");
+        SceneManager.LoadScene(3);
         return true;
     }
 }
