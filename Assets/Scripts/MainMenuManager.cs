@@ -13,7 +13,7 @@ public class MainMenuManager : MonoBehaviour
     {
         Scene activeScene = SceneManager.GetActiveScene();
         Debug.Log("MainMenuManager: the active scene is" + activeScene.name);
-        if (activeScene.name == "DeathScreen")
+        if (activeScene.name == "DeathScreen" || activeScene.name == "Main Menu" )
         {
             EditorApplication.isPlaying = false;
         }
