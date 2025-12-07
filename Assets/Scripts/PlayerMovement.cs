@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     float z;
     void Start()
     {
-
+        ;
         Debug.Log("Horizontal input " + Input.GetAxis("Horizontal"));
         Debug.Log("Vertical input " + Input.GetAxis("Vertical"));
         Cursor.lockState = CursorLockMode.Locked;
