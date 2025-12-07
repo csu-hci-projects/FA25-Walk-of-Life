@@ -3,6 +3,7 @@ using UnityEngine;
 public class BossTrigger : MonoBehaviour
 {
     public EnemyAI[] enemies; 
+    public ScriptedBehavior bossScript;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,10 @@ public class BossTrigger : MonoBehaviour
                 {
                     enemy.PlayerDetected();
                 }
+            }
+            if (bossScript != null)
+            {
+                bossScript.StartChase();
             }
         }
     }
