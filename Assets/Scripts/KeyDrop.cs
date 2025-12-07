@@ -14,14 +14,18 @@ public class KeyDrop : MonoBehaviour
     void Update()
     {
         //Debug.Log("number of " + enemyType +" slimes alive: "+ numberOfEnemies(enemyType));
-        if(!key.activeSelf && numberOfEnemies(enemyType) <= 0)
-        {
-            key.SetActive(true);
-            Debug.Log(enemyType + " key spawned");
-            
+        if (key != null){
+            if(!key.activeSelf && numberOfEnemies(enemyType) <= 0)
+            {
+                key.SetActive(true);
+                Debug.Log(enemyType + " key spawned");
+                
+            }
         }
     }
     
+    //searches the program for all gameobjects with the tag Enemy then looks at their names for the
+    // specific enemy type IE green or red
     private int numberOfEnemies(string enemyToSearchFor)
     {
         int count = 0;
