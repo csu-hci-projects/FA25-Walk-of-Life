@@ -119,23 +119,18 @@ public class EnemyAI : MonoBehaviour
     }
     IEnumerator BossJumpscareFirstPerson()
     {
-        // 1. Freeze player movement
         PlayerController playerController = player.GetComponent<PlayerController>();
         if (playerController != null)
             playerController.FreezeMovement();
         playerController.enabled = false;
-        // 2. Get player's camera
         Camera playerCam = playerController.GetComponentInChildren<Camera>();
         if (playerCam == null) playerCam = Camera.main;
 
-        // 3. Store original camera rotation
         Quaternion originalRotation = playerCam.transform.rotation;
 
-        // 4. Compute direction to boss
         Vector3 directionToBoss = (transform.position - playerCam.transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(directionToBoss);
 
-        // 5. Smoothly rotate camera toward boss over 0.5 seconds
         float duration = 0.5f;
         float elapsed = 0f;
         while (elapsed < duration)
@@ -146,19 +141,21 @@ public class EnemyAI : MonoBehaviour
             yield return null;
         }
 
-        // 6. Play attack animation
         animator.SetTrigger("Attack");
 
-        // 7. Play jumpscare sound
         if (audioSource != null && jumpscareSound != null)
             audioSource.PlayOneShot(jumpscareSound, jumpscareVolume);
 
-        // 8. Wait for the attack animation to finish
         float attackDuration = animator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(attackDuration);
 
-        // 9. Kill the player
         if (playerController != null)
             playerController.KillPlayer();
+    }
+
+    public void playDeathSound()
+    {
+        Debug.Log("death sound");
+        audioSource.PlayOneShot(deathSounds[0]);
     }
 }
