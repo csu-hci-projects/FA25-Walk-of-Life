@@ -1036,6 +1036,34 @@ PrefabInstance:
       propertyPath: m_Colors.m_HighlightedColor.r
       value: 0.11764706
       objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5704468686381092022, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3101814615176826892, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4806593978462131415, guid: 946fb80b7da698646b1992a9d2d2e480, type: 3}
       propertyPath: m_SizeDelta.y
       value: -10
